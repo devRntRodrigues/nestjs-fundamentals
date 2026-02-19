@@ -9,19 +9,22 @@ import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/paginati
 import { DataSource } from 'typeorm';
 import { Event } from 'src/events/entities/event.entity/event.entity';
 import { REQUEST } from '@nestjs/core';
+import type { ConfigType } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CoffeesService {
   constructor(
-    @Inject(REQUEST) private readonly request: Request,
     @InjectRepository(Coffee)
     private readonly coffeeRepository: Repository<Coffee>,
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
-    @Inject('COFFEE_BRANDS')
-    private readonly coffeeBrands: string[],
-  ) {}
+    @Inject(coffeesConfig.KEY)
+    private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
+  ) {
+    console.log(this.coffeesConfiguration);
+  }
 
   findAll(paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;
