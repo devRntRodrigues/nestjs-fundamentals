@@ -5,10 +5,9 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity/flavor.entity';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto/pagination-query.dto';
 import { DataSource } from 'typeorm';
-import { Event } from 'src/events/entities/event.entity/event.entity';
-import { REQUEST } from '@nestjs/core';
+import { Event } from '../events/entities/event.entity/event.entity';
 import type { ConfigType } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
 
